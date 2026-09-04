@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "Automata"
+name = "rustwintool"
 version = "0.1.0"
