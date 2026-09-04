@@ -1,0 +1,40 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'    # Roda quando você criar uma tag tipo v1.0.0
+
+jobs:
+  build-windows:
+    runs-on: windows-latest    # ← VM com Windows!
+
+    steps:
+      # 1. Clona o repo
+      - uses: actions/checkout@v4
+
+      # 2. Instala Rust (se não tiver)
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      # 3. Build com linkagem estática (sem depender de DLLs externas)
+      - name: Build
+        run: cargo build --release --verbose
+        env:
+          RUSTFLAGS: "-C target-feature=+crt-static"
+
+      # 4. Renomeia o .exe
+      - name: Rename binary
+        shell: bash
+        run: |
+          mkdir -p release
+          cp target/release/rustwintool.exe release/rustwintool.exe
+
+      # 5. Publica no GitHub Releases
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/rustwintool.exe
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
