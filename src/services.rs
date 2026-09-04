@@ -9,7 +9,7 @@ pub fn comands(cmd: Vec<(&str, &str)>) {
 
 pub fn execute(command: &str) {
     use std::process::Command;
-
+    
     if command == "Repair-WindowsImage -Online -RestoreHealth" {
         Command::new("powershell.exe")
             .args(&["/C", command])
