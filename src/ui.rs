@@ -5,7 +5,8 @@ use std::io;
 
 pub fn ui() {
     loop {
-        println!("Automata - RUST");
+        execute("cls");
+        println!("RustWinTool");
         println!("----------------");
 
         let mut n: u8 = 1;
@@ -14,6 +15,7 @@ pub fn ui() {
             n += 1;
         }
         println!("Digite (S) para sair.");
+        println!("Execute esse comando para configurações mais avançadas: irm christitus.com/win | iex");
         println!("----------------");
         println!("Escolha um comando: ");
         let mut r_user = String::new();
