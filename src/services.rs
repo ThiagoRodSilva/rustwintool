@@ -14,3 +14,9 @@ pub fn execute(command: &str) {
             .status()
             .expect("Falha ao executar o comando");
 }
+
+pub fn seq_execute(commands: Vec<&str>) {
+    for command in commands {
+        execute(command);
+    }
+}

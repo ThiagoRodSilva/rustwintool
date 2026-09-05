@@ -1,8 +1,8 @@
 mod ui;
 mod services;
 mod shell;
-use ui::ui;
+use ui::ui_main;
 
 fn main() {
-    ui();
+    ui_main();
 }
